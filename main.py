@@ -1,58 +1,25 @@
-import sqlite3
+from db_controller import connection, cursor
+from db_model import Manager
 
-try:
-  connection = sqlite3.connect("company.db") ## CREATE DATABASE company;
+db_manager = Manager(cursor)
 
-  cursor = connection.cursor()
-  
-  cursor.execute("PRAGMA foreign_keys = 1")
+db_manager.insertOffice('Programing')
 
-  '''
-    comandos con referencia al esquema:
-    CREATE, DROP
-  '''
-  
-  sql_command = """
-  INSERT INTO office (
-      id,
-      name
-  ) VALUES (
-      NULL,
-      "MKT"
-  );
-  """
-  cursor.execute(sql_command)
+cursor.execute("SELECT * FROM office")
+result = cursor.fetchall()
+print(result)
 
-  sql_command = """
-    INSERT INTO employee (
-        id,
-        name,
-        lastNme,
-        gender,
-        birth_date,
-        officeid
-    ) VALUES (
-        NULL,
-        "PEPE",
-        "LEPU",
-        "H",
-        "1988-05-21",
-        5
-    );
-  """
 
-  cursor.execute(sql_command)
-  
-  cursor.execute("SELECT * FROM employee")
-  result = cursor.fetchall()
-  print(result)
-  
-  connection.commit()
-  connection.close()
+# connection.commit()
+connection.close()
 
-except Exception as identifier:
-  print('Ups! something went wrong...')
-  print(identifier)
 
+'''
+cursor.execute(sql_command)
+
+cursor.execute("SELECT * FROM employee")
+result = cursor.fetchall()
+print(result)
+'''
 
 

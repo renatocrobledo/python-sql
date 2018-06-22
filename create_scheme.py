@@ -25,7 +25,6 @@ try:
   );"""
 
   cursor.execute(sql_command)
-
   connection.commit()
   connection.close()
 
