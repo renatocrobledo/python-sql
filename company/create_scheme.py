@@ -1,9 +1,6 @@
-import sqlite3
+from db_controller import connection, cursor
 
 try:
-  connection = sqlite3.connect("company.db") ## CREATE DATABASE company;
-  cursor = connection.cursor()
-  cursor.execute("PRAGMA foreign_keys = 1")
 
   sql_command = """
   CREATE TABLE IF NOT EXISTS  office(
